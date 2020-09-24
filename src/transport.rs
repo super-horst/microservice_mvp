@@ -75,7 +75,7 @@ impl EventsServerBuilder {
     }
 
 
-    pub async fn run(self, addr: SocketAddr) -> Result<(), String> {
+    pub async fn run(self, addr: SocketAddr) -> Result<(), Error> {
         let inner = EventServer {
             handler: Arc::new(self.handler),
         };
@@ -84,7 +84,11 @@ impl EventsServerBuilder {
 
         Server::builder()
             .add_service(server)
-            .serve(addr).await.map_err(|e| e.to_string())
+            .serve(addr).await
+            .map_err(|e| Error::TransportError {
+                message: "Server failed".to_string(),
+                cause: e,
+            })
     }
 }
 

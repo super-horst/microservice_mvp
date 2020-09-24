@@ -34,6 +34,7 @@ async fn main() -> Result<(), String> {
         .add(Box::new(db_logger))
         .redirecting(&cfg.targets)
         .run(addr).await
+        .map_err(|e| e.to_string())
 }
 
 struct LoggingHandler {

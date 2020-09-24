@@ -1,0 +1,6 @@
+port = 8082
+targets = [
+    8080,
+    8081,
+]
+loglevel = 'info'
