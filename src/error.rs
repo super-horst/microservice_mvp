@@ -11,9 +11,4 @@ pub enum Error {
         message: String,
         #[fail(cause)] cause: tonic::transport::Error,
     },
-    /*#[fail(display = "I/O operation failed: {}", message)]
-    IOError {
-        message: String,
-        #[fail(cause)] cause: std::io::Error,
-    },*/
 }
