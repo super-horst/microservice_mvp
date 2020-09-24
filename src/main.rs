@@ -27,7 +27,7 @@ async fn main() -> Result<(), String> {
         db: connect_db().await?,
     };
 
-    let addr = format!("[::1]:{}", cfg.port).parse().unwrap();
+    let addr = format!("0.0.0.0:{}", cfg.port).parse().unwrap();
     info!("Server listening on {}", addr);
 
     EventsServerBuilder::new()
