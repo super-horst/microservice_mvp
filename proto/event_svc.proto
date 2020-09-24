@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package events;
+
+message Void {}
+
+message Event {
+  string name = 1;
+}
+
+// Messages service definition.
+service Events {
+  rpc Notify (Event) returns (Void);
+}
+
