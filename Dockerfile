@@ -1,6 +1,6 @@
 FROM rust:1.46.0 as builder
 
-ENV PROJECT_NAME=microservice_mvp
+ARG PROJECT_NAME=microservice_mvp
 ENV RUST_BACKTRACE=full
 
 # Compiler
@@ -31,7 +31,7 @@ EXPOSE 8080
 ENV RUST_BACKTRACE=full
 ENV CONFIG=config
 
-COPY --from=builder /usr/local/cargo/bin/$PROJECT_NAME .
+COPY --from=builder /usr/local/cargo/bin/microservice_mvp .
 
 USER 1000
 CMD [ "./microservice_mvp" ]
