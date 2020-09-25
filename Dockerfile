@@ -16,7 +16,7 @@ RUN USER=root cargo new --bin $PROJECT_NAME
 WORKDIR /$PROJECT_NAME
 
 # Build dependencies & generated code for caching
-COPY Cargo.toml Cargo.lock rust-toolchain build.rs ./
+COPY Cargo.toml rust-toolchain build.rs ./
 COPY proto ./proto
 RUN cargo build --target x86_64-unknown-linux-musl --release
 
