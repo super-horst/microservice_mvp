@@ -1,6 +1,6 @@
 FROM rust:1.46.0 as builder
 
-ARG PROJECT_NAME=microservice_mvp
+ARG PROJECT_NAME
 ENV RUST_BACKTRACE=full
 
 # Compiler
@@ -28,10 +28,11 @@ RUN cargo install --target x86_64-unknown-linux-musl --path .
 FROM scratch
 EXPOSE 8080
 
+ARG PROJECT_NAME
 ENV RUST_BACKTRACE=full
 ENV CONFIG=config
 
-COPY --from=builder /usr/local/cargo/bin/microservice_mvp .
+COPY --from=builder /usr/local/cargo/bin/$PROJECT_NAME ./service
 
 USER 1000
-CMD [ "./microservice_mvp" ]
+CMD [ "./service" ]
